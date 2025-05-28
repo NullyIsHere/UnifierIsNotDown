@@ -1,7 +1,7 @@
 {
-  "id": "template",
-  "name": "Plugin Template",
-  "description": "This is a template for Unifier plugins.",
+  "id": "unifierisnotdown",
+  "name": "Unifier Is Not Down",
+  "description": "Automatically and autonomously answer to uptime questions.",
   "version": "v1.0.0",
   "release": 0,
   "minimum": 36,
@@ -10,7 +10,7 @@
   "requirements": [],
   "shutdown": false,
   "modules": [
-    "template.py"
+    "unifierisnotdown.py"
   ],
   "utils": [
   ]
