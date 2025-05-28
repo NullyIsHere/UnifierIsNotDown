@@ -1,6 +1,6 @@
 """
-<one line to give the program's name and a brief idea of what it does.>
-Copyright (C) <year>  <name of author>
+UnifierIsNotDown - UnifierHQ community keeps asking if unifier is down so here is an automated way.
+Copyright (C) 2025 ItsAsheer 
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -16,18 +16,28 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-import nextcord # use import nextcord for v1.2
+import nextcord
 from nextcord.ext import commands
 
-class Template(commands.Cog):
-    """A template cog written for unifier-plugin temmplate repo"""
-    
-    def __init__(self,bot):
+class UnifierIsNotDown(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def template(self,ctx):
-        await ctx.send('This is a template plugin!')
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.author.bot:
+            return
+
+        words = message.content.lower().strip().split()
+
+        if len(words) != 3:
+            return
+
+        required_words = {"is", "unifier"}
+        third_word_options = {"down", "offline"}
+
+        if required_words.issubset(words) and any(w in words for w in third_word_options):
+            await message.channel.send("no")
 
 def setup(bot):
-    bot.add_cog(Template(bot))
+    bot.add_cog(UnifierIsNotDown(bot))
